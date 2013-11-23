@@ -1,0 +1,17 @@
+group AuthDAO;
+
+createOauth() ::= <<
+  INSERT INTO oauth (person_id, type, access_token, raw, active) VALUES (:person_id, :type, :access_token, :raw, :active)
+>>
+
+createMultiFactorAuth() ::= <<
+  INSERT INTO mfa (person_id, type, secret, active) VALUES (:person_id, :type, :secret, :active)
+>>
+
+findOauthByPersonId() ::= <<
+  SELECT * FROM oauth WHERE person_id = :person_id AND type = 'Stripe'
+>>
+
+findMultiFactorAuthByPersonId() ::= <<
+  SELECT * FROM mfa WHERE person_id = :person_id AND type = :type
+>>

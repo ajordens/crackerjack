@@ -1,0 +1,143 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Service Common 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ service-common ---
+[INFO] com.littlesquare.crackerjack.services:service-common:jar:1.0.0-SNAPSHOT
+[INFO] +- com.littlesquare.crackerjack.services:service-deps:pom:1.0.0-SNAPSHOT:compile
+[INFO] |  +- io.dropwizard:dropwizard-core:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-util:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-jackson:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  |  +- com.fasterxml.jackson.core:jackson-core:jar:2.2.3:compile
+[INFO] |  |  |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.2.3:compile
+[INFO] |  |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-guava:jar:2.2.3:compile
+[INFO] |  |  |  +- com.fasterxml.jackson.module:jackson-module-afterburner:jar:2.2.3:compile
+[INFO] |  |  |  +- com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.2.3:compile
+[INFO] |  |  |  \- ch.qos.logback:logback-classic:jar:1.0.13:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-validation:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  |  +- org.hibernate:hibernate-validator:jar:5.0.1.Final:compile
+[INFO] |  |  |  |  +- javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO] |  |  |  |  +- org.jboss.logging:jboss-logging:jar:3.1.1.GA:compile
+[INFO] |  |  |  |  \- com.fasterxml:classmate:jar:0.8.0:compile
+[INFO] |  |  |  \- org.glassfish.web:javax.el:jar:2.2.5:compile
+[INFO] |  |  |     \- javax.el:javax.el-api:jar:2.2.4:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-configuration:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  |  \- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.2.3:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-logging:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  |  +- com.codahale.metrics:metrics-logback:jar:3.0.1:compile
+[INFO] |  |  |  +- org.slf4j:jul-to-slf4j:jar:1.7.5:compile
+[INFO] |  |  |  +- ch.qos.logback:logback-core:jar:1.0.13:compile
+[INFO] |  |  |  +- org.slf4j:log4j-over-slf4j:jar:1.7.5:compile
+[INFO] |  |  |  \- org.eclipse.jetty:jetty-util:jar:9.0.5.v20130815:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-metrics:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-jersey:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  |  +- com.sun.jersey:jersey-core:jar:1.17.1:compile
+[INFO] |  |  |  +- com.sun.jersey:jersey-server:jar:1.17.1:compile
+[INFO] |  |  |  +- com.sun.jersey:jersey-servlet:jar:1.17.1:compile
+[INFO] |  |  |  \- com.codahale.metrics:metrics-jersey:jar:3.0.1:compile
+[INFO] |  |  |     \- com.codahale.metrics:metrics-annotation:jar:3.0.1:compile
+[INFO] |  |  +- io.dropwizard:dropwizard-jetty:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  |  +- com.codahale.metrics:metrics-jetty9:jar:3.0.1:compile
+[INFO] |  |  |  +- org.eclipse.jetty:jetty-servlet:jar:9.0.5.v20130815:compile
+[INFO] |  |  |  |  \- org.eclipse.jetty:jetty-security:jar:9.0.5.v20130815:compile
+[INFO] |  |  |  +- org.eclipse.jetty:jetty-servlets:jar:9.0.5.v20130815:compile
+[INFO] |  |  |  |  \- org.eclipse.jetty:jetty-continuation:jar:9.0.5.v20130815:compile
+[INFO] |  |  |  \- org.eclipse.jetty:jetty-http:jar:9.0.5.v20130815:compile
+[INFO] |  |  +- com.codahale.metrics:metrics-core:jar:3.0.1:compile
+[INFO] |  |  +- com.codahale.metrics:metrics-jvm:jar:3.0.1:compile
+[INFO] |  |  +- com.codahale.metrics:metrics-servlets:jar:3.0.1:compile
+[INFO] |  |  |  \- com.codahale.metrics:metrics-json:jar:3.0.1:compile
+[INFO] |  |  +- com.codahale.metrics:metrics-healthchecks:jar:3.0.1:compile
+[INFO] |  |  +- net.sourceforge.argparse4j:argparse4j:jar:0.4.1:compile
+[INFO] |  |  +- org.eclipse.jetty.orbit:javax.servlet:jar:3.0.0.v201112011016:compile
+[INFO] |  |  \- org.eclipse.jetty.toolchain.setuid:jetty-setuid-java:jar:1.0.2:compile
+[INFO] |  +- io.dropwizard:dropwizard-db:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  \- org.apache.tomcat:tomcat-jdbc:jar:7.0.42:compile
+[INFO] |  |     \- org.apache.tomcat:tomcat-juli:jar:7.0.42:compile
+[INFO] |  +- io.dropwizard:dropwizard-views:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  +- io.dropwizard:dropwizard-auth:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  +- io.dropwizard:dropwizard-migrations:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  +- org.liquibase:liquibase-core:jar:3.0.7:compile
+[INFO] |  |  |  \- org.yaml:snakeyaml:jar:1.13:compile
+[INFO] |  |  \- com.mattbertolini:liquibase-slf4j:jar:1.1.0:compile
+[INFO] |  +- io.dropwizard:dropwizard-client:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  +- com.sun.jersey:jersey-client:jar:1.17.1:compile
+[INFO] |  |  +- com.sun.jersey.contribs:jersey-apache-client4:jar:1.17.1:compile
+[INFO] |  |  +- org.apache.httpcomponents:httpclient:jar:4.3:compile
+[INFO] |  |  |  \- org.apache.httpcomponents:httpcore:jar:4.3:compile
+[INFO] |  |  \- com.codahale.metrics:metrics-httpclient:jar:3.0.1:compile
+[INFO] |  +- io.dropwizard:dropwizard-lifecycle:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  +- org.slf4j:slf4j-api:jar:1.7.5:compile
+[INFO] |  |  \- org.eclipse.jetty:jetty-server:jar:9.0.5.v20130815:compile
+[INFO] |  |     \- org.eclipse.jetty:jetty-io:jar:9.0.5.v20130815:compile
+[INFO] |  +- io.dropwizard:dropwizard-jdbi:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  +- org.jdbi:jdbi:jar:2.50:compile
+[INFO] |  |  \- com.codahale.metrics:metrics-jdbi:jar:3.0.1:compile
+[INFO] |  +- io.dropwizard:dropwizard-views-freemarker:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  |  \- org.freemarker:freemarker:jar:2.3.20:compile
+[INFO] |  +- io.dropwizard:dropwizard-assets:jar:0.7.0-SNAPSHOT:compile
+[INFO] |  \- io.dropwizard:dropwizard-servlets:jar:0.7.0-SNAPSHOT:compile
+[INFO] +- com.littlesquare.crackerjack.services:service-jobs:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  \- org.quartz-scheduler:quartz:jar:2.1.6:compile
+[INFO] |     \- c3p0:c3p0:jar:0.9.1.1:compile
+[INFO] +- com.littlesquare.crackerjack.services:service-camel:jar:1.0.0-SNAPSHOT:compile
+[INFO] |  +- org.apache.camel:camel-core:jar:2.12.1:compile
+[INFO] |  |  \- com.sun.xml.bind:jaxb-impl:jar:2.2.6:compile
+[INFO] |  \- org.apache.camel:camel-aws:jar:2.12.1:compile
+[INFO] |     +- com.amazonaws:aws-java-sdk:jar:1.5.1:compile
+[INFO] |     +- org.codehaus.jackson:jackson-core-asl:jar:1.9.12:compile
+[INFO] |     +- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.12:compile
+[INFO] |     +- commons-logging:commons-logging:jar:1.1.3:compile
+[INFO] |     +- commons-codec:commons-codec:jar:1.8:compile
+[INFO] |     \- javax.mail:mail:jar:1.4.7:compile
+[INFO] |        \- javax.activation:activation:jar:1.1:compile
+[INFO] +- org.antlr:stringtemplate:jar:3.2.1:compile
+[INFO] |  \- antlr:antlr:jar:2.7.7:compile
+[INFO] +- postgresql:postgresql:jar:9.1-901.jdbc4:compile
+[INFO] +- mysql:mysql-connector-java:jar:5.1.25:compile
+[INFO] +- com.netflix.rxjava:rxjava-core:jar:0.14.2:compile
+[INFO] +- com.netflix.rxjava:rxjava-groovy:jar:0.14.2:compile
+[INFO] +- org.codehaus.groovy:groovy-all:jar:2.0.6:compile
+[INFO] +- joda-time:joda-time:jar:2.1:compile
+[INFO] +- org.mindrot:jbcrypt:jar:0.3m:compile
+[INFO] +- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] +- org.isomorphism:token-bucket:jar:1.1:compile
+[INFO] |  \- com.google.guava:guava:jar:11.0.1:compile
+[INFO] |     \- com.google.code.findbugs:jsr305:jar:1.3.9:compile
+[INFO] +- com.wordnik:swagger-jaxrs_2.10:jar:1.3.0:compile
+[INFO] |  +- org.scala-lang:scala-library:jar:2.10.0:compile
+[INFO] |  +- com.wordnik:swagger-core_2.10:jar:1.3.0:compile
+[INFO] |  |  +- commons-lang:commons-lang:jar:2.4:compile
+[INFO] |  |  +- com.fasterxml.jackson.module:jackson-module-scala_2.10:jar:2.1.5:compile
+[INFO] |  |  |  +- com.thoughtworks.paranamer:paranamer:jar:2.3:compile
+[INFO] |  |  |  \- org.scala-lang:scala-reflect:jar:2.10.0:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.1.5:compile
+[INFO] |  |  +- com.fasterxml.jackson.module:jackson-module-jsonSchema:jar:2.1.0:compile
+[INFO] |  |  +- com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.0.0:compile
+[INFO] |  |  |  \- com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.0.0:compile
+[INFO] |  |  +- com.wordnik:swagger-annotations_2.10:jar:1.3.0:compile
+[INFO] |  |  +- org.json4s:json4s-ext_2.10:jar:3.2.4:compile
+[INFO] |  |  |  \- org.joda:joda-convert:jar:1.2:compile
+[INFO] |  |  +- org.json4s:json4s-native_2.10:jar:3.2.4:compile
+[INFO] |  |  |  \- org.json4s:json4s-core_2.10:jar:3.2.4:compile
+[INFO] |  |  |     +- org.json4s:json4s-ast_2.10:jar:3.2.4:compile
+[INFO] |  |  |     \- org.scala-lang:scalap:jar:2.10.0:compile
+[INFO] |  |  |        \- org.scala-lang:scala-compiler:jar:2.10.0:compile
+[INFO] |  |  \- org.json4s:json4s-jackson_2.10:jar:3.2.4:compile
+[INFO] |  +- javax.ws.rs:jsr311-api:jar:1.1.1:compile
+[INFO] |  \- org.reflections:reflections:jar:0.9.8:compile
+[INFO] |     +- javassist:javassist:jar:3.12.1.GA:compile
+[INFO] |     \- dom4j:dom4j:jar:1.6.1:compile
+[INFO] |        \- xml-apis:xml-apis:jar:1.0.b2:compile
+[INFO] +- junit:junit:jar:4.10:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.1:test
+[INFO] \- org.mockito:mockito-all:jar:1.9.0:test
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.284s
+[INFO] Finished at: Sat Nov 23 11:06:48 PST 2013
+[INFO] Final Memory: 17M/61M
+[INFO] ------------------------------------------------------------------------
