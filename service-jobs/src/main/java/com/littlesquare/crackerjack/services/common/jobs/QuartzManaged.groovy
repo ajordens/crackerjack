@@ -1,13 +1,13 @@
-package com.littlesquare.crackerjack.services.common.managers
+package com.littlesquare.crackerjack.services.common.jobs
 
 import io.dropwizard.lifecycle.Managed
 import org.quartz.Scheduler
 import org.quartz.impl.StdSchedulerFactory
 
-public class QuartzManager implements Managed {
+public class QuartzManaged implements Managed {
     final Scheduler scheduler
 
-    public QuartzManager() {
+    public QuartzManaged() {
         this.scheduler = StdSchedulerFactory.getDefaultScheduler()
     }
 
