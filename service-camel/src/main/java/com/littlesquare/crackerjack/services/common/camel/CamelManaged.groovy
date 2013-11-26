@@ -2,8 +2,12 @@ package com.littlesquare.crackerjack.services.common.camel
 
 import io.dropwizard.lifecycle.Managed
 import org.apache.camel.CamelContext
+import org.apache.camel.Exchange
+import org.apache.camel.Processor
+import org.apache.camel.ProducerTemplate
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.impl.DefaultCamelContext
+import org.apache.camel.impl.DefaultProducerTemplate
 import org.apache.camel.util.jndi.JndiContext
 
 /**
@@ -12,14 +16,17 @@ import org.apache.camel.util.jndi.JndiContext
 class CamelManaged implements Managed {
     private final JndiContext jndiContext = new JndiContext();
     private final CamelContext context = new DefaultCamelContext(jndiContext);
+    final ProducerTemplate producerTemplate = new DefaultProducerTemplate(context)
 
     @Override
     void start() throws Exception {
         context.start()
+        producerTemplate.start()
     }
 
     @Override
     void stop() throws Exception {
+        producerTemplate.stop()
         context.stop()
     }
 
