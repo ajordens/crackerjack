@@ -1,10 +1,5 @@
 package com.littlesquare.crackerjack.services.example.resources
 
-import com.wordnik.swagger.annotations.Api
-import com.wordnik.swagger.annotations.ApiOperation
-import com.wordnik.swagger.annotations.ApiParam
-import com.wordnik.swagger.annotations.ApiResponse
-import com.wordnik.swagger.annotations.ApiResponses
 import org.apache.camel.Exchange
 import org.apache.camel.Processor
 import org.apache.camel.ProducerTemplate
@@ -20,7 +15,6 @@ import javax.ws.rs.core.MediaType
  * @author Adam Jordens (adam@jordens.org)
  */
 @Path("/api/hello")
-@Api(value = "/api/hello", description = "Helllooooo World!")
 @Produces(MediaType.APPLICATION_JSON)
 class HelloWorldApiResource {
     private final ProducerTemplate producerTemplate
@@ -30,13 +24,7 @@ class HelloWorldApiResource {
     }
 
     @GET
-    @ApiOperation(value = "Hello world", notes = "Hey! It's the hello world endpoint.", response = String.class)
-    @ApiResponses(value = [
-    @ApiResponse(code = 400, message = "Invalid 'name' supplied")
-    ])
-    String get(
-            @ApiParam(value = "Name", required = true) @QueryParam("name") String name
-    ) {
+    String get(@QueryParam("name") String name) {
         if (!name.equalsIgnoreCase("Bob")) {
             producerTemplate.send("direct:aws-sns-example", new Processor() {
                 public void process(Exchange outExchange) {
