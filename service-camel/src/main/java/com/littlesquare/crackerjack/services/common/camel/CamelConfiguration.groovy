@@ -1,6 +1,8 @@
 package com.littlesquare.crackerjack.services.common.camel
 
+import com.amazonaws.auth.AWSCredentials
 import com.amazonaws.auth.BasicAWSCredentials
+import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider
 import com.amazonaws.services.sns.AmazonSNS
 import com.amazonaws.services.sns.AmazonSNSClient
 import com.amazonaws.services.sqs.AmazonSQS
@@ -13,10 +15,6 @@ import javax.validation.constraints.NotNull
  * @author Adam Jordens (adam@jordens.org)
  */
 class CamelConfiguration {
-    @NotNull
-    @JsonProperty
-    private String awsFile = "aws.properties"
-
     @NotNull
     @JsonProperty
     private String awsAccessKey = ""
@@ -33,14 +31,13 @@ class CamelConfiguration {
         return new AmazonSNSClient(getAWSCredentials())
     }
 
-    private getAWSCredentials() {
-        def aws = this.class.classLoader.getResourceAsStream(awsFile)
-        if ((!awsAccessKey || !awsSecretKey) && aws) {
-            def properties = new Properties()
-            properties.load(aws)
+    private AWSCredentials getAWSCredentials() {
+        if (!awsAccessKey || !awsSecretKey) {
+            def credentialsProvider = new ClasspathPropertiesFileCredentialsProvider()
+            def credentials = credentialsProvider.getCredentials()
 
-            awsAccessKey = properties.getProperty("awsAccessKey")
-            awsSecretKey = properties.getProperty("awsSecretKey")
+            awsAccessKey = credentials.getAWSAccessKeyId()
+            awsSecretKey = credentials.getAWSSecretKey()
         }
         return new BasicAWSCredentials(awsAccessKey, awsSecretKey)
     }
