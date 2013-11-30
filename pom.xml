@@ -8,7 +8,7 @@
 
     <groupId>com.littlesquare.crackerjack</groupId>
     <artifactId>crackerjack-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Crackerjack Parent</name>
 
@@ -64,14 +64,14 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <repository>
-            <id>repo.codahale.com</id>
-            <url>http://repo.codahale.com/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
     </repositories>
+
+    <scm>
+        <connection>scm:git:git@github.com:ajordens/crackerjack.git</connection>
+        <developerConnection>scm:git:git@github.com:ajordens/crackerjack.git</developerConnection>
+        <url>https://github.com/ajordens/crackerjack</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <distributionManagement>
         <site>
@@ -167,6 +167,12 @@
                 <groupId>com.wordnik</groupId>
                 <artifactId>swagger-jaxrs_2.10</artifactId>
                 <version>${swagger-jaxrs.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <dependency>
