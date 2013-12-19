@@ -8,12 +8,12 @@
     <parent>
         <groupId>com.littlesquare.crackerjack</groupId>
         <artifactId>crackerjack-parent</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.3</version>
     </parent>
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
     <artifactId>service-camel</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <name>Service Common Camel</name>
 
     <dependencies>
