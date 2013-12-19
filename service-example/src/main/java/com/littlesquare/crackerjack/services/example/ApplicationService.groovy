@@ -12,9 +12,6 @@ import com.littlesquare.crackerjack.services.example.extras.ExampleSnsRouteBuild
 import com.littlesquare.crackerjack.services.example.extras.ExampleSqsRouteBuilder
 import com.littlesquare.crackerjack.services.example.healthchecks.ExampleHealthCheck
 import com.littlesquare.crackerjack.services.example.resources.HelloWorldApiResource
-import com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider
-import com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON
-import com.wordnik.swagger.jaxrs.listing.ResourceListingProvider
 import io.dropwizard.Application
 import io.dropwizard.assets.AssetsBundle
 import io.dropwizard.auth.basic.BasicAuthProvider
@@ -70,10 +67,6 @@ class ApplicationService extends Application<ApplicationConfiguration> {
         environment.lifecycle().manage(camelManaged)
 
         environment.jersey().register(new HelloWorldApiResource(camelManaged.producerTemplate));
-        environment.jersey().register(new ApiListingResourceJSON())
-        environment.jersey().register(new ResourceListingProvider())
-        environment.jersey().register(new ApiDeclarationProvider())
-
         environment.healthChecks().register("example", new ExampleHealthCheck())
     }
 }
