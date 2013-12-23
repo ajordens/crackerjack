@@ -1,7 +1,9 @@
 package com.littlesquare.crackerjack.services.example.healthchecks
 
-import com.codahale.metrics.health.HealthCheck
 import static com.codahale.metrics.health.HealthCheck.*
+
+import com.codahale.metrics.health.HealthCheck
+
 
 /**
  * @author Adam Jordens (adam@jordens.org)

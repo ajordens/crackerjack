@@ -4,7 +4,6 @@ import io.dropwizard.Configuration
 import io.dropwizard.db.DataSourceFactory
 import com.fasterxml.jackson.annotation.JsonProperty
 import io.dropwizard.client.JerseyClientConfiguration
-import io.dropwizard.db.DatabaseConfiguration
 
 import javax.validation.Valid
 import javax.validation.constraints.NotNull
@@ -22,8 +21,4 @@ class ServiceConfiguration extends Configuration {
     @NotNull
     @JsonProperty
     JerseyClientConfiguration jerseyClient = new JerseyClientConfiguration()
-
-    public DataSourceFactory getDataSourceFactory() {
-        return database;
-    }
 }

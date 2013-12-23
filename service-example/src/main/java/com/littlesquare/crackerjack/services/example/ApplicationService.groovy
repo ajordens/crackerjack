@@ -1,10 +1,5 @@
 package com.littlesquare.crackerjack.services.example
 
-import com.amazonaws.auth.ClasspathPropertiesFileCredentialsProvider
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
-import com.amazonaws.services.dynamodbv2.model.AttributeValue
-import com.amazonaws.services.dynamodbv2.model.PutItemRequest
-import com.amazonaws.services.dynamodbv2.model.PutItemResult
 import com.littlesquare.crackerjack.services.common.CrackerjackServiceExtras
 import com.littlesquare.crackerjack.services.common.auth.FixedAuthenticator
 import com.littlesquare.crackerjack.services.common.camel.CamelManaged
@@ -12,6 +7,7 @@ import com.littlesquare.crackerjack.services.example.extras.ExampleSnsRouteBuild
 import com.littlesquare.crackerjack.services.example.extras.ExampleSqsRouteBuilder
 import com.littlesquare.crackerjack.services.example.healthchecks.ExampleHealthCheck
 import com.littlesquare.crackerjack.services.example.resources.HelloWorldApiResource
+import com.littlesquare.crackerjack.services.example.resources.HelloWorldResource
 import io.dropwizard.Application
 import io.dropwizard.assets.AssetsBundle
 import io.dropwizard.auth.basic.BasicAuthProvider
@@ -31,24 +27,24 @@ class ApplicationService extends Application<ApplicationConfiguration> {
     private static final CrackerjackServiceExtras extras = new CrackerjackServiceExtras()
 
     public static void main(String[] args) throws Exception {
-        new ApplicationService().run(args);
+        new ApplicationService().run(args)
     }
 
     @Override
     public String getName() {
-        return "hello-world";
+        return "hello-world"
     }
 
     @Override
     public void initialize(Bootstrap<ApplicationConfiguration> bootstrap) {
-        bootstrap.addBundle(new AssetsBundle());
+        bootstrap.addBundle(new AssetsBundle())
         bootstrap.addBundle(new MigrationsBundle<ApplicationConfiguration>() {
             @Override
             public DataSourceFactory getDataSourceFactory(ApplicationConfiguration configuration) {
-                return configuration.getDataSourceFactory();
+                return configuration.database
             }
-        });
-        bootstrap.addBundle(new ViewBundle());
+        })
+        bootstrap.addBundle(new ViewBundle())
     }
 
     @Override
@@ -56,7 +52,7 @@ class ApplicationService extends Application<ApplicationConfiguration> {
                     Environment environment) throws ClassNotFoundException {
         environment.jersey().register(
                 new BasicAuthProvider<>(new FixedAuthenticator("fixedSecret"), "Crackerjack Realm")
-        );
+        )
         extras.removeBuiltinTasks(environment)
 
         def camelManaged = new CamelManaged()
@@ -66,7 +62,8 @@ class ApplicationService extends Application<ApplicationConfiguration> {
         camelManaged.addRoutes(new ExampleSnsRouteBuilder("MyTestTopic"))
         environment.lifecycle().manage(camelManaged)
 
-        environment.jersey().register(new HelloWorldApiResource(camelManaged.producerTemplate));
+        environment.jersey().register(new HelloWorldResource())
+        environment.jersey().register(new HelloWorldApiResource(camelManaged.producerTemplate))
         environment.healthChecks().register("example", new ExampleHealthCheck())
     }
 }

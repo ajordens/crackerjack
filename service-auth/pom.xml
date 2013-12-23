@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <camel-aws.version>2.12.1</camel-aws.version>
+    </properties>
 
     <parent>
         <groupId>com.littlesquare.crackerjack</groupId>
@@ -9,29 +12,24 @@
     </parent>
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
-    <artifactId>service-example</artifactId>
+    <artifactId>service-auth</artifactId>
     <version>1.0.4-SNAPSHOT</version>
-    <name>Service Example</name>
+    <name>Service Common Auth</name>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>service-common</artifactId>
+            <artifactId>service-deps</artifactId>
             <version>${project.version}</version>
+            <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>service-ui</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>service-auth</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
         </dependency>
     </dependencies>
 </project>

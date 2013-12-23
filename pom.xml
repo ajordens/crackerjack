@@ -14,9 +14,11 @@
 
     <modules>
         <module>service-deps</module>
+        <module>service-auth</module>
         <module>service-jobs</module>
         <module>service-camel</module>
         <module>service-common</module>
+        <module>service-ui</module>
         <module>service-example</module>
     </modules>
 
@@ -24,8 +26,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>0.7.0-SNAPSHOT</dropwizard.version>
-        <groovy-all.version>2.0.6</groovy-all.version>
+        <groovy-all.version>2.2.0</groovy-all.version>
         <hamcrest-all.version>1.1</hamcrest-all.version>
+        <github.global.server>github</github.global.server>
         <jbcrypt.version>0.3m</jbcrypt.version>
         <jersey.version>1.17.1</jersey.version>
         <joda-time.version>2.1</joda-time.version>
@@ -41,6 +44,7 @@
         <msgpack.version>0.6.7</msgpack.version>
         <rxjava.version>0.14.2</rxjava.version>
         <token-bucket.version>1.1</token-bucket.version>
+        <h2.version>1.3.174</h2.version>
     </properties>
 
     <developers>
@@ -73,19 +77,32 @@
     </scm>
 
     <distributionManagement>
-        <site>
-            <id>s3.site</id>
-            <url>s3://crackerjack-repo/site</url>
-        </site>
         <repository>
-            <id>s3.release</id>
-            <url>s3://crackerjack-repo/release</url>
+            <id>internal.repo</id>
+            <name>Temporary Staging Repository</name>
+            <url>file://${project.build.directory}/mvn-repo</url>
         </repository>
-        <snapshotRepository>
-            <id>s3.snapshot</id>
-            <url>s3://crackerjack-repo/snapshot</url>
-        </snapshotRepository>
+        <site>
+            <id>github-pages-site</id>
+            <name>Deployment through GitHub's site deployment plugin</name>
+            <url>site/${project.version}</url>
+        </site>
     </distributionManagement>
+
+    <!--<distributionManagement>-->
+    <!--<site>-->
+    <!--<id>s3.site</id>-->
+    <!--<url>s3://crackerjack-repo/site</url>-->
+    <!--</site>-->
+    <!--<repository>-->
+    <!--<id>s3.release</id>-->
+    <!--<url>s3://crackerjack-repo/release</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>s3.snapshot</id>-->
+    <!--<url>s3://crackerjack-repo/snapshot</url>-->
+    <!--</snapshotRepository>-->
+    <!--</distributionManagement>-->
 
     <dependencyManagement>
         <dependencies>
@@ -162,6 +179,11 @@
                 <version>${vertx-core.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.version}</version>
+            </dependency>
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
@@ -243,6 +265,50 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.9</version>
+                <executions>
+                    <execution>
+                        <id>deploy.artifacts</id>
+                        <configuration>
+                            <message>Maven artifacts for ${project.version}</message>
+                            <noJekyll>true</noJekyll>
+                            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                            <branch>refs/heads/mvn-repo</branch>
+                            <merge>true</merge>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                        </configuration>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                    <execution>
+                        <id>deploy.site</id>
+                        <configuration>
+                            <message>Creating site for ${project.version}</message>
+                            <merge>true</merge>
+                            <path>${project.distributionManagement.site.url}</path>
+                        </configuration>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site-deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <extensions>
             <extension>
@@ -252,4 +318,17 @@
             </extension>
         </extensions>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>codenarc-maven-plugin</artifactId>
+                <version>0.18-1</version>
+                <configuration>
+                    <codeNarcVersion>0.19</codeNarcVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
