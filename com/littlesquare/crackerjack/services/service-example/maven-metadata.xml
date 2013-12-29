@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.littlesquare.crackerjack.services</groupId>
+  <artifactId>service-example</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.4-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20131229212413</lastUpdated>
+  </versioning>
+</metadata>
