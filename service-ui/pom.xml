@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.littlesquare.crackerjack</groupId>
         <artifactId>crackerjack-parent</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.5-SNAPSHOT</version>
     </parent>
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
     <artifactId>service-ui</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <name>Service UI</name>
 
     <dependencies>
