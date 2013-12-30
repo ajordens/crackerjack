@@ -10,7 +10,6 @@
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
     <artifactId>service-deps</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
     <name>Service Common Dependencies</name>
 
     <dependencyManagement>

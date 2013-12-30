@@ -13,7 +13,6 @@
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
     <artifactId>service-camel</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
     <name>Service Common Camel</name>
 
     <dependencies>
