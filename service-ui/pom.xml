@@ -9,28 +9,26 @@
     </parent>
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
-    <artifactId>service-example</artifactId>
-    <name>Service Example</name>
+    <artifactId>service-ui</artifactId>
+    <version>1.0.4-SNAPSHOT</version>
+    <name>Service UI</name>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>service-common</artifactId>
+            <artifactId>service-deps</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>service-ui</artifactId>
-            <version>${project.version}</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>service-auth</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
         </dependency>
     </dependencies>
 </project>

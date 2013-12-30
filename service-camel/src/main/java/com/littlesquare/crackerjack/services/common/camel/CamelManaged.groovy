@@ -2,8 +2,6 @@ package com.littlesquare.crackerjack.services.common.camel
 
 import io.dropwizard.lifecycle.Managed
 import org.apache.camel.CamelContext
-import org.apache.camel.Exchange
-import org.apache.camel.Processor
 import org.apache.camel.ProducerTemplate
 import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.impl.DefaultCamelContext

@@ -16,15 +16,15 @@ import javax.ws.rs.core.MediaType
  */
 @Path("/api/hello")
 @Produces(MediaType.APPLICATION_JSON)
-class HelloWorldApiResource {
+public class HelloWorldApiResource {
     private final ProducerTemplate producerTemplate
 
-    HelloWorldApiResource(ProducerTemplate producerTemplate) {
+    public HelloWorldApiResource(ProducerTemplate producerTemplate) {
         this.producerTemplate = producerTemplate
     }
 
     @GET
-    String get(@QueryParam("name") String name) {
+    public String get(@QueryParam("name") String name) {
         if (!name.equalsIgnoreCase("Bob")) {
             producerTemplate.send("direct:aws-sns-example", new Processor() {
                 public void process(Exchange outExchange) {
