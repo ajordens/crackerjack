@@ -3,9 +3,10 @@
   <groupId>com.littlesquare.crackerjack.services</groupId>
   <artifactId>service-auth</artifactId>
   <versioning>
+    <release>1.0.4</release>
     <versions>
-      <version>1.0.4-SNAPSHOT</version>
+      <version>1.0.4</version>
     </versions>
-    <lastUpdated>20131229212905</lastUpdated>
+    <lastUpdated>20131230052559</lastUpdated>
   </versioning>
 </metadata>
