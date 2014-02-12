@@ -11,7 +11,7 @@
     <groupId>com.littlesquare.crackerjack.services</groupId>
     <artifactId>service-ui</artifactId>
     <version>1.0.5-SNAPSHOT</version>
-    <name>Service UI</name>
+    <name>Service Common UI</name>
 
     <dependencies>
         <dependency>

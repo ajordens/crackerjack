@@ -4,6 +4,7 @@ import org.apache.camel.Exchange
 import org.apache.camel.Processor
 import org.apache.camel.ProducerTemplate
 
+import javax.ws.rs.DefaultValue
 import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.Produces
@@ -24,7 +25,7 @@ public class HelloWorldApiResource {
     }
 
     @GET
-    public String get(@QueryParam("name") String name) {
+    public String get(@DefaultValue("Default Value") @QueryParam("name") String name) {
         if (!name.equalsIgnoreCase("Bob")) {
             producerTemplate.send("direct:aws-sns-example", new Processor() {
                 public void process(Exchange outExchange) {

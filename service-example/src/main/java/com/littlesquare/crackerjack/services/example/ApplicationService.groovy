@@ -12,10 +12,12 @@ import io.dropwizard.Application
 import io.dropwizard.assets.AssetsBundle
 import io.dropwizard.auth.basic.BasicAuthProvider
 import io.dropwizard.db.DataSourceFactory
+import io.dropwizard.jdbi.DBIFactory
 import io.dropwizard.migrations.MigrationsBundle
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
 import io.dropwizard.views.ViewBundle
+import org.skife.jdbi.v2.DBI
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -65,5 +67,12 @@ class ApplicationService extends Application<ApplicationConfiguration> {
         environment.jersey().register(new HelloWorldResource())
         environment.jersey().register(new HelloWorldApiResource(camelManaged.producerTemplate))
         environment.healthChecks().register("example", new ExampleHealthCheck())
+
+        def factory = new DBIFactory()
+        def dbi = factory.build(environment, configuration.database, "mysql")
+        def handle = dbi.open()
+        handle.createQuery("SELECT * FROM person").iterator().each { Map<String, Object> result ->
+            println result
+        }
     }
 }
