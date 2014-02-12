@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.littlesquare.crackerjack</groupId>
         <artifactId>crackerjack-parent</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.5-SNAPSHOT</version>
     </parent>
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
@@ -64,16 +64,6 @@
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>jsr250-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.isomorphism</groupId>
-            <artifactId>token-bucket</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 </project>

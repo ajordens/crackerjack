@@ -1,19 +1,24 @@
 database:
-  driverClass: org.h2.Driver
-  user: sa
-  password: sa
-  url: jdbc:h2:target/example
+  driverClass: com.mysql.jdbc.Driver
+  url: jdbc:mysql://userhue-demo.cd44zakb0zgt.us-east-1.rds.amazonaws.com:3306/userhue
 
 camel:
   awsAccessKey:
   awsSecretKey:
+
+throttle:
+  contexts:
+    - username: .*
+      servletPath: .*
+      ipAddress: .*
+      allowedThroughput: 1
 
 server:
 #  softNofileLimit: 1000
 #  hardNofileLimit: 1000
   applicationConnectors:
     - type: http
-      port: 8080
+      port: 8090
 # this requires the npn-boot library on the JVM's boot classpath
 #    - type: spdy
 #      port: 8445
@@ -22,7 +27,7 @@ server:
 #      validateCerts: false
   adminConnectors:
     - type: http
-      port: 8081
+      port: 8091
 
 logging:
   level: INFO

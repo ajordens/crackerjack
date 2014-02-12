@@ -1,5 +1,6 @@
 package com.littlesquare.crackerjack.services.common
 
+import com.littlesquare.crackerjack.services.common.config.ClasspathPropertiesFileDataSourceFactory
 import io.dropwizard.Configuration
 import io.dropwizard.db.DataSourceFactory
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -15,7 +16,7 @@ class ServiceConfiguration extends Configuration {
     @Valid
     @NotNull
     @JsonProperty
-    DataSourceFactory database = new DataSourceFactory()
+    ClasspathPropertiesFileDataSourceFactory database = new ClasspathPropertiesFileDataSourceFactory()
 
     @Valid
     @NotNull
