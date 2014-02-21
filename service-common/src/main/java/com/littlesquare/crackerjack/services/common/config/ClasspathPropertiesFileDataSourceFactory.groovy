@@ -3,6 +3,13 @@ package com.littlesquare.crackerjack.services.common.config
 import io.dropwizard.db.DataSourceFactory
 
 /**
+ * A data source factory that will load configuration from a DataSource.properties file that exists either on:
+ * - the root classpath (classpath:///DataSource.properties)
+ * or
+ * - a conf directory (file://`pwd`/conf/DataSource.properties)
+ *
+ * TODO-AJ : The conf directory should be moved to a constructor parameter with reasonable defaults.
+ *
  * @author Adam Jordens (adam@jordens.org)
  */
 public class ClasspathPropertiesFileDataSourceFactory extends DataSourceFactory {
@@ -13,7 +20,10 @@ public class ClasspathPropertiesFileDataSourceFactory extends DataSourceFactory 
 
         InputStream inputStream = getClass().getResourceAsStream("/" + DEFAULT_PROPERTIES_FILE)
         if (inputStream == null) {
-            throw new IllegalStateException(errorMessage)
+            inputStream = new File("conf", DEFAULT_PROPERTIES_FILE).newInputStream()
+            if (inputStream == null) {
+                throw new IllegalStateException(errorMessage)
+            }
         }
 
         try {
