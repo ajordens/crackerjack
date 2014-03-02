@@ -1,6 +1,6 @@
 database:
   driverClass: com.mysql.jdbc.Driver
-  url: jdbc:mysql://userhue-demo.cd44zakb0zgt.us-east-1.rds.amazonaws.com:3306/userhue
+  url: jdbc:mysql://localhost:3306/userhue
 
 camel:
   awsAccessKey:
