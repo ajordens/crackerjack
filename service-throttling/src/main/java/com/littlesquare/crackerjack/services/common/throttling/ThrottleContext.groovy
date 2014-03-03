@@ -9,15 +9,16 @@ import java.util.regex.Pattern
  * @author Adam Jordens (adam@jordens.org)
  */
 public class ThrottleContext implements Comparable<ThrottleContext> {
-    String username
-    String servletPath
-    String ipAddress
+    String username = ".*"
+    String servletPath = ".*"
+    String method = ".*"
+    String ipAddress = ".*"
 
-    RateLimiter rateLimiter = RateLimiter.create(1, 1, TimeUnit.MILLISECONDS)
+    RateLimiter rateLimiter = RateLimiter.create(1)
     private Pattern pattern = null
 
     public void setAllowedThroughput(Double allowedThroughput) {
-        this.rateLimiter = RateLimiter.create(allowedThroughput, 1, TimeUnit.MILLISECONDS)
+        this.rateLimiter = RateLimiter.create(allowedThroughput)
     }
 
     public boolean matches(ThrottleContext throttleContext) {
@@ -31,20 +32,20 @@ public class ThrottleContext implements Comparable<ThrottleContext> {
     @Override
     int compareTo(ThrottleContext o) {
         if ((username == ".*" && o.username != ".*") ||
+                (method == ".*" && o.method != ".*") ||
                 (servletPath == ".*" && o.servletPath != ".*") ||
                 (ipAddress == ".*" && o.ipAddress != ".*")) {
             return -1
         } else if ((username != ".*" && o.username == ".*") ||
+                (method != ".*" && o.method == ".*") ||
                 (servletPath != ".*" && o.servletPath == ".*") ||
                 (ipAddress != ".*" && o.ipAddress == ".*")) {
             return 1
         }
 
         def compareTo = 0
-        ["username", "servletPath", "ipAddress"].each {
-            if (compareTo == 0) {
-                compareTo = this."${it}" <=> o."${it}"
-            }
+        ["username", "method", "servletPath", "ipAddress"].each {
+            compareTo = compareTo ?: this."${it}" <=> o."${it}"
         }
         return compareTo
     }
@@ -52,6 +53,6 @@ public class ThrottleContext implements Comparable<ThrottleContext> {
 
     @Override
     public String toString() {
-        return [username, servletPath, ipAddress].join("__")
+        return [username, method, servletPath, ipAddress].join("__")
     }
 }

@@ -8,19 +8,17 @@ import io.dropwizard.db.DataSourceFactory
  * or
  * - a conf directory (file://`pwd`/conf/DataSource.properties)
  *
- * TODO-AJ : The conf directory should be moved to a constructor parameter with reasonable defaults.
- *
  * @author Adam Jordens (adam@jordens.org)
  */
 public class ClasspathPropertiesFileDataSourceFactory extends DataSourceFactory {
     private static String DEFAULT_PROPERTIES_FILE = "DataSource.properties"
 
-    public ClasspathPropertiesFileDataSourceFactory() {
+    public ClasspathPropertiesFileDataSourceFactory(String configurationDirectory = "conf") {
         String errorMessage = "Unable to load DataSource credentials from the " + DEFAULT_PROPERTIES_FILE + " file on the classpath"
 
         InputStream inputStream = getClass().getResourceAsStream("/" + DEFAULT_PROPERTIES_FILE)
         if (inputStream == null) {
-            inputStream = new File("conf", DEFAULT_PROPERTIES_FILE).newInputStream()
+            inputStream = new File(configurationDirectory, DEFAULT_PROPERTIES_FILE).newInputStream()
             if (inputStream == null) {
                 throw new IllegalStateException(errorMessage)
             }

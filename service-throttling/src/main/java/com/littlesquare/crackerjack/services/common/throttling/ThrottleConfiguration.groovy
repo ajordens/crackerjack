@@ -19,7 +19,7 @@ public class ThrottleConfiguration {
     public Throttle buildThrottle() {
         switch (type) {
             case RateLimiterThrottle.class.simpleName:
-                return new RateLimiterThrottle()
+                return new RateLimiterThrottle(contexts)
             default:
                 throw new IllegalArgumentException("Unsupported throttle type (${type})")
         }

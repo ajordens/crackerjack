@@ -1,6 +1,6 @@
 database:
   driverClass: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/userhue
+  url: jdbc:mysql://localhost:3306/example
 
 camel:
   awsAccessKey:
@@ -9,9 +9,10 @@ camel:
 throttle:
   contexts:
     - username: .*
+      method: .*
       servletPath: .*
       ipAddress: .*
-      allowedThroughput: 1
+      allowedThroughput: 10
 
 server:
 #  softNofileLimit: 1000
