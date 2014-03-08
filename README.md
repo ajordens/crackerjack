@@ -27,7 +27,10 @@ Currently targets Dropwizard 0.7-rc2.
 ##### Includes:
 
 - Simple Camel and Quartz components.
-- An example service w/ Camel and SQS integration.
-- Codenarc + Maven integration.
-- Simple Guava RateLimiter-based Throttle
+- Simple Guava RateLimiter-based Throttle.
+- Codenarc integration.
+
+##### Work In Progress:
+
+- OkHttp integration.
 
