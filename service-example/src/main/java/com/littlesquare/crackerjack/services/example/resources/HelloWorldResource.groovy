@@ -8,6 +8,9 @@ import javax.ws.rs.Path
 import javax.ws.rs.Produces
 import javax.ws.rs.QueryParam
 import javax.ws.rs.core.MediaType
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 /**
  * @author Adam Jordens (adam@jordens.org)
@@ -15,6 +18,8 @@ import javax.ws.rs.core.MediaType
 @Path("/hello")
 @Produces(MediaType.TEXT_HTML)
 public class HelloWorldResource {
+    private final ExecutorService executorService = Executors.newCachedThreadPool()
+
     public HelloWorldApiResource() {
     }
 
@@ -24,7 +29,15 @@ public class HelloWorldResource {
                 name: name ?: "World",
                 nested: [
                         value: "Example of a nested value."
-                ]
-        ])
+                ],
+                "future1": [call: {
+                    (1..10).each { Thread.sleep(100) }
+                    return "future1"
+                }] as Callable,
+                "future2": [call: {
+                    (1..2).each { Thread.sleep(400) }
+                    return "future2"
+                }] as Callable
+        ], executorService)
     }
 }

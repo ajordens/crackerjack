@@ -48,7 +48,6 @@ Currently targets Dropwizard 0.7-rc2.
 
         // expected to be significantly < cumulative sleep time
         assert (endTime - startTime) < 1200
-
 - Codenarc integration.
 
 ##### Work In Progress:
