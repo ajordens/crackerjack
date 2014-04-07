@@ -21,6 +21,6 @@ public class FixedAuthenticator implements Authenticator<BasicCredentials, Perso
         if (fixedSecret.equals(credentials.getPassword())) {
             return Optional.of(new Person(name: credentials.getUsername()))
         }
-        return Optional.absent();
+        return Optional.absent()
     }
 }

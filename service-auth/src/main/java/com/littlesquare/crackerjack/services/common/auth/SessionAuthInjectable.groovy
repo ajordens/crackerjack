@@ -34,7 +34,7 @@ public class SessionAuthInjectable extends AbstractHttpContextInjectable {
             if (sessionId) {
                 HttpSession session = sessionHandler.getSessionManager().getHttpSession(sessionId)
                 if (session) {
-                    ExternalPerson currentUser = (ExternalPerson) session.getAttribute(AuthHelper.SESSION_USER)
+                    ExternalPerson currentUser = (ExternalPerson) session.getAttribute(SESSION_USER)
                     if (currentUser) {
                         def uri = c.request.requestUri.toString()
                         if (currentUser.requiresMultiFactorAuth && !currentUser.hasMultiFactorAuth && !uri.endsWith("/google-authenticator")) {
