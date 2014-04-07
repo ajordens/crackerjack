@@ -9,10 +9,10 @@ import static groovyx.gpars.GParsPool.withPool
  */
 public class RateLimiterThrottleTest {
     private final List<ThrottleContext> throttleContexts = [
-            new ThrottleContext(username: ".*", servletPath: ".*", ipAddress: ".*", allowedThroughput: 1.0),
-            new ThrottleContext(username: "a3", servletPath: "/path", ipAddress: "127.0.0.1", allowedThroughput: 10.0),
-            new ThrottleContext(username: "a1", servletPath: ".*", ipAddress: ".*", allowedThroughput: 10.0),
-            new ThrottleContext(username: "a2", servletPath: "/path", ipAddress: ".*", allowedThroughput: 10.0)
+            new ThrottleContext(allowedThroughput: 1.0),
+            new ThrottleContext(username: "a3", method: "GET", servletPath: "/path", ipAddress: "127.0.0.1", allowedThroughput: 10.0),
+            new ThrottleContext(username: "a1", method: "GET", servletPath: ".*", ipAddress: ".*", allowedThroughput: 10.0),
+            new ThrottleContext(username: "a2", method: "GET", servletPath: "/path", ipAddress: ".*", allowedThroughput: 10.0)
     ]
     private final RateLimiterThrottle throttle = new RateLimiterThrottle(throttleContexts)
 
@@ -22,21 +22,19 @@ public class RateLimiterThrottleTest {
     @Test
     void check() {
         assert throttle.check(throttleContexts[0])
-        assert throttle.check(throttleContexts[0])
-        assert throttle.check(throttleContexts[0])
-
-        withPool {
-            (1..3).eachParallel {
-                assert throttle.check(throttleContexts[1])
-            }
-        }
+        assert !throttle.check(throttleContexts[0])
+        assert !throttle.check(throttleContexts[0])
     }
 
     @Test
     void findMatchingThrottleContext() {
         assert throttle.findMatchingThrottleContext(new ThrottleContext(
-                username: "a1", servletPath: "/path", ipAddress: "0.0.0.0"
+                username: "a1", method: "GET", servletPath: "/path", ipAddress: "0.0.0.0"
         )) == throttleContexts[2]
+
+        assert throttle.findMatchingThrottleContext(new ThrottleContext(
+                username: "a1", method: "POST", servletPath: "/path", ipAddress: "0.0.0.0"
+        )) == throttleContexts[0]
 
         assert throttle.findMatchingThrottleContext(new ThrottleContext(
                 username: "missing", servletPath: "missing", ipAddress: "missing"

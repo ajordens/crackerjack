@@ -6,17 +6,51 @@ Crackerjack is a Groovy-based amalgamation of common nice-to-haves when building
 
 Includes utilities for both API and UI-based services.
 
-Currently targets Dropwizard 0.7-SNAPSHOT.
+Currently targets Dropwizard 0.7-rc2.
+
+##### Usage:
+    <repositories>
+        <repository>
+            <id>crackerjack-mvn-repo</id>
+            <name>Crackerjack</name>
+            <url>https://raw.github.com/ajordens/crackerjack/mvn-repo/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
 ##### Includes:
 
 - Simple Camel and Quartz components.
-- An example service w/ Camel and SQS integration.
-- Codenarc + Maven integration.
+- Simple Guava RateLimiter-based Throttle.
+- BaseViewModel support for asynchronous data retrieval.
 
-##### Coming:
+        def viewModel = new BaseViewModel("view.ftl", [
+            "future1": [call: {
+                (1..10).each { Thread.sleep(100) }
+                return "future1"
+            }] as Callable,
+            "future2": [call: {
+               (1..2).each { Thread.sleep(400) }
+               return "future2"
+           }] as Callable
+        ])
 
-- Throttling Support
-  - [RateLimiter](http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/util/concurrent/RateLimiter.html) or [Leaky Bucket](https://github.com/bbeck/token-bucket)
-- Improved Service Example (w/ UI)
+        long startTime = System.currentTimeMillis()
+        assert viewModel.getData().get("future1").toString() == "future1"
+        assert viewModel.getData().get("future2").toString() == "future2"
+        long endTime = System.currentTimeMillis()
+
+        // expected to be significantly < cumulative sleep time
+        assert (endTime - startTime) < 1200
+- Codenarc integration.
+
+##### Work In Progress:
+
+- OkHttp integration.
 

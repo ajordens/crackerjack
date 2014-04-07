@@ -1,6 +1,6 @@
 database:
   driverClass: com.mysql.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/userhue
+  url: jdbc:mysql://localhost:3306/example
 
 camel:
   awsAccessKey:
@@ -9,16 +9,17 @@ camel:
 throttle:
   contexts:
     - username: .*
+      method: .*
       servletPath: .*
       ipAddress: .*
-      allowedThroughput: 1
+      allowedThroughput: 10
 
 server:
 #  softNofileLimit: 1000
 #  hardNofileLimit: 1000
   applicationConnectors:
     - type: http
-      port: 8090
+      port: 8070
 # this requires the npn-boot library on the JVM's boot classpath
 #    - type: spdy
 #      port: 8445
@@ -27,7 +28,7 @@ server:
 #      validateCerts: false
   adminConnectors:
     - type: http
-      port: 8091
+      port: 8071
 
 logging:
   level: INFO
