@@ -1,0 +1,21 @@
+group PersonDAO;
+
+findByEmail() ::= <<
+  SELECT id, name, email, password, extra from person WHERE UPPER(email) = UPPER(:email)
+>>
+
+findById() ::= <<
+  SELECT id, name, email, password, extra from person WHERE id = :id
+>>
+
+create() ::= <<
+  INSERT INTO person (name, email, password, extra, active) VALUES (:name, :email, :password, :extra, :active)
+>>
+
+update() ::= <<
+  UPDATE person SET password=:password WHERE UPPER(email) = UPPER(:email)
+>>
+
+doesUserHavePassword() ::= <<
+  SELECT true FROM person WHERE UPPER(email) = UPPER(:email) AND trim(password) != ''
+>>

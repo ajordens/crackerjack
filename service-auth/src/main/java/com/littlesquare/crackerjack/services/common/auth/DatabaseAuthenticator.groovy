@@ -1,5 +1,6 @@
 package com.littlesquare.crackerjack.services.common.auth
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.littlesquare.crackerjack.services.common.auth.api.ExternalPerson
 import com.google.common.base.Optional
 import com.littlesquare.crackerjack.services.common.auth.core.Person
@@ -19,7 +20,9 @@ import org.slf4j.LoggerFactory
  */
 @SuppressWarnings(['CatchException'])
 class DatabaseAuthenticator implements Authenticator<BasicCredentials, ExternalPerson> {
-    static final Logger LOG = LoggerFactory.getLogger(DatabaseAuthenticator.class);
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+    private static final Logger LOG = LoggerFactory.getLogger(DatabaseAuthenticator.class);
+
     private final PersonDAO personDAO
     private final AuthDAO authDAO
 
@@ -34,7 +37,11 @@ class DatabaseAuthenticator implements Authenticator<BasicCredentials, ExternalP
 
         try {
             if (person && BCrypt.checkpw(credentials.getPassword(), person.password)) {
-                def user = new ExternalPerson(person.id, credentials.getUsername())
+                def user = new ExternalPerson(
+                        person.id,
+                        credentials.getUsername(),
+                        person.extra ? OBJECT_MAPPER.readValue(person.extra, Map) : [:]
+                )
                 def multiFactorAuth = authDAO.findMultiFactorAuthByPersonId(person.id, "google-authenticator")
                 if (multiFactorAuth) {
                     user.requiresMultiFactorAuth = multiFactorAuth.active
