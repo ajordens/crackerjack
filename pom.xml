@@ -381,4 +381,45 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>npm-gulp</id>
+            <activation>
+                <file>
+                    <exists>${basedir}/src/main/ui/gulpfile.js</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.7</version>
+                        <executions>
+                            <execution>
+                                <id>npm install</id>
+                                <phase>prepare-package</phase>
+                                <configuration>
+                                    <tasks>
+                                        <exec dir="${basedir}/src/main/ui" executable="npm" failonerror="true">
+                                            <arg line="install"/>
+                                        </exec>
+                                        <exec dir="${basedir}/src/main/ui" executable="gulp" failonerror="true">
+                                            <arg line="clean"/>
+                                        </exec>
+                                        <exec dir="${basedir}/src/main/ui" executable="gulp" failonerror="true">
+                                            <arg line="build"/>
+                                        </exec>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
