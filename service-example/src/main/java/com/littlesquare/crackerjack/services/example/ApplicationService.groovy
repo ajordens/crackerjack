@@ -80,14 +80,14 @@ Unable to instantiate AWS components, please create a conf/AwsCredentials.proper
 
         try {
             def factory = new DBIFactory()
-            def dbi = factory.build(environment, configuration.database, "mysql")
+            def dbi = factory.build(environment, configuration.database, "database")
             def handle = dbi.open()
             handle.createQuery("SELECT * FROM person").iterator().each { Map<String, Object> result ->
-                println result
+                LOG.debug("Found Person -- ${result}")
             }
         } catch (RuntimeException e) {
             LOG.error("""
-Unable to establish connection to local MySQL, please ensure that it is running and the migration has been executed.
+Unable to establish connection to database, please ensure that it is running and the migration has been executed.
 """.trim(), e)
         }
     }

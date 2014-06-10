@@ -52,6 +52,7 @@
         <validation-api.version>1.1.0.Final</validation-api.version>
         <slf4j-api.version>1.7.6</slf4j-api.version>
         <httpclient.version>4.3.2</httpclient.version>
+        <hsqldb.version>2.3.2</hsqldb.version>
     </properties>
 
     <developers>

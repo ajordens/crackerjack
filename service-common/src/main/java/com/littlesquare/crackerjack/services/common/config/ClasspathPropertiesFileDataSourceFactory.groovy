@@ -18,9 +18,10 @@ public class ClasspathPropertiesFileDataSourceFactory extends DataSourceFactory 
 
         InputStream inputStream = getClass().getResourceAsStream("/" + configurationDirectory + DEFAULT_PROPERTIES_FILE)
         if (inputStream == null) {
-            inputStream = new File(configurationDirectory, DEFAULT_PROPERTIES_FILE).newInputStream()
-            if (inputStream == null) {
-                throw new IllegalStateException(errorMessage)
+            try {
+                inputStream = new File(configurationDirectory, DEFAULT_PROPERTIES_FILE).newInputStream()
+            } catch (FileNotFoundException e) {
+                return
             }
         }
 
