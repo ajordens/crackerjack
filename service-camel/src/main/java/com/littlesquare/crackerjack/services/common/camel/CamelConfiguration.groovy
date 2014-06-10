@@ -33,7 +33,7 @@ class CamelConfiguration {
 
     private AWSCredentials getAWSCredentials() {
         if (!awsAccessKey || !awsSecretKey) {
-            def credentialsProvider = new ClasspathPropertiesFileCredentialsProvider()
+            def credentialsProvider = new ClasspathPropertiesFileCredentialsProvider("/conf/AwsCredentials.properties")
             def credentials = credentialsProvider.getCredentials()
 
             awsAccessKey = credentials.getAWSAccessKeyId()

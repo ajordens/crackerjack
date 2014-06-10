@@ -13,10 +13,10 @@ import io.dropwizard.db.DataSourceFactory
 public class ClasspathPropertiesFileDataSourceFactory extends DataSourceFactory {
     private static String DEFAULT_PROPERTIES_FILE = "DataSource.properties"
 
-    public ClasspathPropertiesFileDataSourceFactory(String configurationDirectory = "conf") {
+    public ClasspathPropertiesFileDataSourceFactory(String configurationDirectory = "conf/") {
         String errorMessage = "Unable to load DataSource credentials from the " + DEFAULT_PROPERTIES_FILE + " file on the classpath"
 
-        InputStream inputStream = getClass().getResourceAsStream("/" + DEFAULT_PROPERTIES_FILE)
+        InputStream inputStream = getClass().getResourceAsStream("/" + configurationDirectory + DEFAULT_PROPERTIES_FILE)
         if (inputStream == null) {
             inputStream = new File(configurationDirectory, DEFAULT_PROPERTIES_FILE).newInputStream()
             if (inputStream == null) {

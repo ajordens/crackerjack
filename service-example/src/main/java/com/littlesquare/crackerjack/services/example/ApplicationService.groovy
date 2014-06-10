@@ -57,12 +57,20 @@ class ApplicationService extends Application<ApplicationConfiguration> {
         )
         extras.removeBuiltinTasks(environment)
 
-        def camelManaged = new CamelManaged()
-        camelManaged.bind("sqsClient", configuration.camel.buildSQSClient())
-        camelManaged.bind("snsClient", configuration.camel.buildSNSClient())
-        camelManaged.addRoutes(new ExampleSqsRouteBuilder("MyTestQueue"))
-        camelManaged.addRoutes(new ExampleSnsRouteBuilder("MyTestTopic"))
-        environment.lifecycle().manage(camelManaged)
+        try {
+            def camelManaged = new CamelManaged()
+            camelManaged.bind("sqsClient", configuration.camel.buildSQSClient())
+            camelManaged.bind("snsClient", configuration.camel.buildSNSClient())
+            camelManaged.addRoutes(new ExampleSqsRouteBuilder("MyTestQueue"))
+            camelManaged.addRoutes(new ExampleSnsRouteBuilder("MyTestTopic"))
+            environment.lifecycle().manage(camelManaged)
+        } catch (RuntimeException e) {
+            LOG.error("""
+Unable to instantiate AWS components, please create a conf/AwsCredentials.properties file containing the following:
+  accessKey=<Your AWS Access Key>
+  secretKey=<Your AWS Secret Key>
+""".trim(), e)
+        }
 
         environment.jersey().register(new HelloWorldResource())
 
@@ -70,11 +78,17 @@ class ApplicationService extends Application<ApplicationConfiguration> {
         environment.jersey().register(new HelloWorldApiResource(throttle))
         environment.healthChecks().register("example", new ExampleHealthCheck())
 
-        def factory = new DBIFactory()
-        def dbi = factory.build(environment, configuration.database, "mysql")
-        def handle = dbi.open()
-        handle.createQuery("SELECT * FROM person").iterator().each { Map<String, Object> result ->
-            println result
+        try {
+            def factory = new DBIFactory()
+            def dbi = factory.build(environment, configuration.database, "mysql")
+            def handle = dbi.open()
+            handle.createQuery("SELECT * FROM person").iterator().each { Map<String, Object> result ->
+                println result
+            }
+        } catch (RuntimeException e) {
+            LOG.error("""
+Unable to establish connection to local MySQL, please ensure that it is running and the migration has been executed.
+""".trim(), e)
         }
     }
 }
