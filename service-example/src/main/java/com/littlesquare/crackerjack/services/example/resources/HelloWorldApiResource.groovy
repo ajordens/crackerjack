@@ -20,11 +20,9 @@ import javax.ws.rs.core.MediaType
 @Path("/api/hello")
 @Produces(MediaType.APPLICATION_JSON)
 public class HelloWorldApiResource {
-    private final ProducerTemplate producerTemplate
     private final Throttle throttle
 
-    public HelloWorldApiResource(ProducerTemplate producerTemplate, Throttle throttle) {
-        this.producerTemplate = producerTemplate
+    public HelloWorldApiResource(Throttle throttle) {
         this.throttle = throttle
     }
 

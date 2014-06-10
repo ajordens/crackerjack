@@ -20,9 +20,6 @@ import java.util.concurrent.Executors
 public class HelloWorldResource {
     private final ExecutorService executorService = Executors.newCachedThreadPool()
 
-    public HelloWorldApiResource() {
-    }
-
     @GET
     public View get(@QueryParam("name") String name) {
         return new BaseViewModel("/ftl/helloworld.ftl", [

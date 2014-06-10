@@ -67,7 +67,7 @@ class ApplicationService extends Application<ApplicationConfiguration> {
         environment.jersey().register(new HelloWorldResource())
 
         def throttle = configuration.throttle.buildThrottle()
-        environment.jersey().register(new HelloWorldApiResource(camelManaged.producerTemplate, throttle))
+        environment.jersey().register(new HelloWorldApiResource(throttle))
         environment.healthChecks().register("example", new ExampleHealthCheck())
 
         def factory = new DBIFactory()
