@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <prerequisites>
         <maven>3.0.0</maven>
@@ -30,7 +29,6 @@
         <dropwizard.version>0.7.0</dropwizard.version>
         <groovy-all.version>2.2.2</groovy-all.version>
         <hamcrest-all.version>1.1</hamcrest-all.version>
-        <h2.version>1.3.175</h2.version>
         <github.global.server>github</github.global.server>
         <guava.version>16.0.1</guava.version>
         <jackson.version>2.3.2</jackson.version>
@@ -286,7 +284,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.5</version>
                 <configuration>
-                    <outputDirectory/>
+                    <outputDirectory />
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -356,7 +354,7 @@
                         <id>enforce</id>
                         <configuration>
                             <rules>
-                                <DependencyConvergence/>
+                                <DependencyConvergence />
                             </rules>
                         </configuration>
                         <goals>
@@ -408,13 +406,13 @@
                                 <configuration>
                                     <tasks>
                                         <exec dir="${basedir}/src/main/ui" executable="npm" failonerror="true">
-                                            <arg line="install"/>
+                                            <arg line="install" />
                                         </exec>
                                         <exec dir="${basedir}/src/main/ui" executable="gulp" failonerror="true">
-                                            <arg line="clean"/>
+                                            <arg line="clean" />
                                         </exec>
                                         <exec dir="${basedir}/src/main/ui" executable="gulp" failonerror="true">
-                                            <arg line="build"/>
+                                            <arg line="build" />
                                         </exec>
                                     </tasks>
                                 </configuration>

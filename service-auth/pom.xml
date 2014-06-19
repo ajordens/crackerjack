@@ -9,7 +9,6 @@
 
     <groupId>com.littlesquare.crackerjack.services</groupId>
     <artifactId>service-auth</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
     <name>Service Common Auth</name>
 
     <dependencies>
