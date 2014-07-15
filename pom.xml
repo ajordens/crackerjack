@@ -19,11 +19,14 @@
         <module>service-throttling</module>
         <module>service-common</module>
         <module>service-ui</module>
+        <module>service-cache</module>
+        <module>service-cache-hazelcast</module>
         <module>service-example</module>
     </modules>
 
     <properties>
         <camel-aws.version>2.13.1</camel-aws.version>
+        <cglib-nodep.version>3.1</cglib-nodep.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>0.7.1</dropwizard.version>
@@ -51,6 +54,7 @@
         <slf4j-api.version>1.7.6</slf4j-api.version>
         <httpclient.version>4.3.2</httpclient.version>
         <hsqldb.version>2.3.2</hsqldb.version>
+        <hazelcast.version>3.2.3</hazelcast.version>
     </properties>
 
     <developers>
@@ -144,11 +148,21 @@
             </dependency>
 
             <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <version>${cglib-nodep.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
                 <version>${groovy-all.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.hazelcast</groupId>
+                <artifactId>hazelcast</artifactId>
+                <version>${hazelcast.version}</version>
+            </dependency>
             <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>

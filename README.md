@@ -6,7 +6,7 @@ Crackerjack is a Groovy-based amalgamation of common nice-to-haves when building
 
 Includes utilities for both API and UI-based services.
 
-Currently targets Dropwizard 0.7.
+Currently targets Dropwizard 0.7.1.
 
 ##### Usage:
     <repositories>
@@ -52,5 +52,5 @@ Currently targets Dropwizard 0.7.
 
 ##### Work In Progress:
 
-- OkHttp integration.
+- A (very) preliminary experiment combining Hazelcast with a JDK dynamic proxy to cache API responses.
 

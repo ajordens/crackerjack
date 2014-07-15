@@ -51,6 +51,11 @@
                 <artifactId>service-throttling</artifactId>
                 <version>${crackerjack.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.littlesquare.crackerjack.services</groupId>
+                <artifactId>service-cache-hazelcast</artifactId>
+                <version>${crackerjack.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -76,6 +81,10 @@
         <dependency>
             <groupId>com.littlesquare.crackerjack.services</groupId>
             <artifactId>service-throttling</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.littlesquare.crackerjack.services</groupId>
+            <artifactId>service-cache-hazelcast</artifactId>
         </dependency>
 
         <dependency>
