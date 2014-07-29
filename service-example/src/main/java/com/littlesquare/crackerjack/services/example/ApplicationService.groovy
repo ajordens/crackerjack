@@ -72,7 +72,8 @@ class ApplicationService extends Application<ApplicationConfiguration> {
 
         environment.jersey().register(Enhancer.create(HelloWorldApiResource.class, new CacheableMethodInterceptor(
                 new HazelcastCacheProvider(hazelcastBundle.hazelcastInstance),
-                new DefaultHelloWorldApiResource(configuration.throttle.buildThrottle())
+                new DefaultHelloWorldApiResource(configuration.throttle.buildThrottle()),
+                environment.metrics()
         )))
 
         extras.removeBuiltinTasks(environment)

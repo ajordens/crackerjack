@@ -1,5 +1,6 @@
 package com.littlesquare.crackerjack.services.common.cache
 
+import com.codahale.metrics.MetricRegistry
 import net.sf.cglib.proxy.MethodInterceptor
 import net.sf.cglib.proxy.MethodProxy
 
@@ -9,12 +10,14 @@ import java.lang.reflect.Method
  * @author Adam Jordens (adam@jordens.org)
  */
 public class CacheableMethodInterceptor implements MethodInterceptor {
+    private final MetricRegistry metricRegistry
     private final CacheProvider cacheProvider
     private final Object delegate
 
-    public CacheableMethodInterceptor(CacheProvider cacheProvider, Object delegate) {
+    public CacheableMethodInterceptor(CacheProvider cacheProvider, Object delegate, MetricRegistry metricRegistry) {
         this.cacheProvider = cacheProvider
         this.delegate = delegate
+        this.metricRegistry = metricRegistry
     }
 
     @Override
@@ -34,13 +37,13 @@ public class CacheableMethodInterceptor implements MethodInterceptor {
 
             def cache = cacheProvider.getCache(cacheableAnnotation.cacheName())
             if (cache.containsKey(key)) {
-                println "!Cache Hit!"
+                metricRegistry.meter([method.declaringClass.name, method.name, "hit"].join(".")).mark()
                 return cache.get(key)
             }
 
-            println "!Cache Miss!"
+            metricRegistry.meter([method.declaringClass.name, method.name, "miss"].join(".")).mark()
             def result = method.invoke(delegate, args)
-            cache.put(key, result)
+            cache.put(key, result, cacheableAnnotation.timeToLive(), cacheableAnnotation.timeUnit())
             return result
         }
         return method.invoke(delegate, args)

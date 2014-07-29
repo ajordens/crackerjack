@@ -233,6 +233,11 @@
                 <artifactId>vertx-lang-groovy</artifactId>
                 <version>${vertx-core.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.codahale.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>${metrics.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.h2database</groupId>

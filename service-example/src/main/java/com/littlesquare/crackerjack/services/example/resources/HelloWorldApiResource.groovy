@@ -10,6 +10,7 @@ import javax.ws.rs.Produces
 import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Context
 import javax.ws.rs.core.MediaType
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Adam Jordens (adam@jordens.org)
@@ -18,7 +19,7 @@ import javax.ws.rs.core.MediaType
 @Produces(MediaType.APPLICATION_JSON)
 public interface HelloWorldApiResource {
     @GET
-    @Cacheable(cacheName = "HelloWorld", cacheKeyRefs = ["GET", "{0}"])
+    @Cacheable(cacheName = "HelloWorld", cacheKeyRefs = ["GET", "{0}"], timeToLive = 10L, timeUnit = TimeUnit.SECONDS)
     public String get(@DefaultValue("Default Value") @QueryParam("name") String name,
                       @Context HttpServletRequest httpServletRequest)
 }

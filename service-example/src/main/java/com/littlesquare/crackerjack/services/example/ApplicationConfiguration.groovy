@@ -24,8 +24,8 @@ class ApplicationConfiguration extends ServiceConfiguration implements Hazelcast
     @JsonProperty
     ThrottleConfiguration throttle = new ThrottleConfiguration()
 
-    @Override
-    HazelcastConfiguration getHazelcastConfiguration() {
-        return new HazelcastConfiguration()
-    }
+    @Valid
+    @NotNull
+    @JsonProperty
+    HazelcastConfiguration hazelcastConfiguration = new HazelcastConfiguration()
 }

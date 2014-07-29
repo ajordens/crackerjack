@@ -10,8 +10,7 @@ public class CacheableMethodInterceptorTest {
     void annotationParsing() {
         def string = "{90}"
         def matcher = (string =~ /\{(\d+)\}/)
-        println matcher.matches()
-        println matcher[0][1]
+        assert matcher[0][1] == "90"
         assert matcher.matches()
     }
 }

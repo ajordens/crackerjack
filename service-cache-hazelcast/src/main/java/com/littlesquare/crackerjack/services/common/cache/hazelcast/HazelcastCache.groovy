@@ -3,6 +3,8 @@ package com.littlesquare.crackerjack.services.common.cache.hazelcast
 import com.hazelcast.core.IMap
 import com.littlesquare.crackerjack.services.common.cache.Cache
 
+import java.util.concurrent.TimeUnit
+
 /**
  * @author Adam Jordens (adam@jordens.org)
  */
@@ -26,5 +28,10 @@ public class HazelcastCache implements Cache {
     @Override
     void put(String name, Object value) {
         delegate.put(name, value)
+    }
+
+    @Override
+    void put(String name, Object value, long timeToLive, TimeUnit timeUnit) {
+        delegate.put(name, value, timeToLive, timeUnit)
     }
 }

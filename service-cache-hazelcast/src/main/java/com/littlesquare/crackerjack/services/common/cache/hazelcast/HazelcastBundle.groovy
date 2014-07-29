@@ -20,11 +20,14 @@ public class HazelcastBundle implements ConfiguredBundle<HazelcastServiceConfigu
 
     @Override
     void run(HazelcastServiceConfiguration hazelcastServiceConfiguration, Environment environment) throws Exception {
-        Config config = new Config()
-        config.getNetworkConfig().getJoin().getMulticastConfig().setMulticastGroup("224.0.0.1")
-        config.getNetworkConfig().getInterfaces().clear()
-        config.getNetworkConfig().getInterfaces().addInterface("127.0.0.1")
-        config.getNetworkConfig().getInterfaces().setEnabled(true)
+        def hazelcastConfiguration = hazelcastServiceConfiguration.hazelcastConfiguration
+
+        def config = new Config()
+
+        def networkConfig = config.getNetworkConfig()
+        networkConfig.getJoin().getMulticastConfig().setMulticastGroup(hazelcastConfiguration.multicastGroup)
+        networkConfig.getInterfaces().setInterfaces(hazelcastConfiguration.interfaces)
+        networkConfig.getInterfaces().setEnabled(true)
 
         hazelcastInstance = Hazelcast.newHazelcastInstance(config)
     }
