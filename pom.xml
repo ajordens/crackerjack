@@ -54,7 +54,7 @@
         <slf4j-api.version>1.7.6</slf4j-api.version>
         <httpclient.version>4.3.2</httpclient.version>
         <hsqldb.version>2.3.2</hsqldb.version>
-        <hazelcast.version>3.2.3</hazelcast.version>
+        <hazelcast.version>3.2.4</hazelcast.version>
     </properties>
 
     <developers>

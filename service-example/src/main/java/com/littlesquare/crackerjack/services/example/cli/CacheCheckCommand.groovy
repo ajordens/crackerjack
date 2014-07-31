@@ -32,9 +32,20 @@ public class CacheCheckCommand extends ConfiguredCommand<ApplicationConfiguratio
         def hazelcastBundle = new HazelcastBundle()
         hazelcastBundle.run(configuration, environment)
 
-        def hazelcastInstance = hazelcastBundle.hazelcastInstance
-        println hazelcastInstance.getMap("HelloWorld")
+        def hazelcastInstance = hazelcastBundle.getHazelcastInstance()
 
-        System.exit(0)
+        def cacheMap = hazelcastInstance.getMap("Demo")
+        def random = new Random(System.currentTimeMillis())
+        (1..25).each {
+            cacheMap.put(random.nextInt(10000), random.nextInt(10000))
+            Thread.sleep(1000)
+            LOG.info("Iteration #${it} of adding to the shared hazelcast map ('Demo')")
+        }
+
+        LOG.info("""
+Cache      : {}
+Cache Size : {}
+... state will be backed up when multiple cache check commands are running simultaneously
+""", cacheMap.entrySet(), cacheMap.size())
     }
 }

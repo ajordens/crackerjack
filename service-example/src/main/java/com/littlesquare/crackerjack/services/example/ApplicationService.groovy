@@ -69,7 +69,6 @@ class ApplicationService extends Application<ApplicationConfiguration> {
                 new BasicAuthProvider<>(new FixedAuthenticator("fixedSecret"), "Crackerjack Realm")
         )
         environment.jersey().register(new HelloWorldResource())
-
         environment.jersey().register(Enhancer.create(HelloWorldApiResource.class, new CacheableMethodInterceptor(
                 new HazelcastCacheProvider(hazelcastBundle.hazelcastInstance),
                 new DefaultHelloWorldApiResource(configuration.throttle.buildThrottle()),

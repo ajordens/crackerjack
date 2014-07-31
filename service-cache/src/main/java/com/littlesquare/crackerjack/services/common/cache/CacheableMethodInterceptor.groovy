@@ -3,6 +3,8 @@ package com.littlesquare.crackerjack.services.common.cache
 import com.codahale.metrics.MetricRegistry
 import net.sf.cglib.proxy.MethodInterceptor
 import net.sf.cglib.proxy.MethodProxy
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import java.lang.reflect.Method
 
@@ -10,6 +12,8 @@ import java.lang.reflect.Method
  * @author Adam Jordens (adam@jordens.org)
  */
 public class CacheableMethodInterceptor implements MethodInterceptor {
+    private static final Logger LOG = LoggerFactory.getLogger(CacheableMethodInterceptor)
+
     private final MetricRegistry metricRegistry
     private final CacheProvider cacheProvider
     private final Object delegate
@@ -32,6 +36,7 @@ public class CacheableMethodInterceptor implements MethodInterceptor {
                         return args[argIndex].toString()
                     }
                 }
+                LOG.warn("Unable to generate cache key, invalid cacheKeyRef '${cacheKeyRef}'. Using default.")
                 return cacheKeyRef
             }.join("_").replaceAll("\\s", "_")
 
