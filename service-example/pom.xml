@@ -27,6 +27,7 @@
         <!--<crackerjack.version>[1.0.8-SNAPSHOT,)</crackerjack.version>-->
         <crackerjack.version>1.0.8-SNAPSHOT</crackerjack.version>
         <h2.version>1.3.175</h2.version>
+        <retrofit.version>1.6.1</retrofit.version>
     </properties>
 
     <dependencyManagement>
@@ -58,6 +59,11 @@
             </dependency>
 
             <dependency>
+                <groupId>com.squareup.retrofit</groupId>
+                <artifactId>retrofit</artifactId>
+                <version>${retrofit.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <version>${h2.version}</version>
@@ -85,6 +91,10 @@
         <dependency>
             <groupId>com.littlesquare.crackerjack.services</groupId>
             <artifactId>service-cache-hazelcast</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit</groupId>
+            <artifactId>retrofit</artifactId>
         </dependency>
 
         <dependency>

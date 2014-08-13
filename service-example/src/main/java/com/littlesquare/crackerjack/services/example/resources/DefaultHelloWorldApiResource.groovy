@@ -2,9 +2,9 @@ package com.littlesquare.crackerjack.services.example.resources
 
 import com.littlesquare.crackerjack.services.common.throttling.Throttle
 import com.littlesquare.crackerjack.services.common.throttling.ThrottleContext
+import com.littlesquare.crackerjack.services.example.core.HelloWorld
 
 import javax.servlet.http.HttpServletRequest
-import javax.ws.rs.GET
 import javax.ws.rs.WebApplicationException
 
 /**
@@ -17,8 +17,8 @@ public class DefaultHelloWorldApiResource implements HelloWorldApiResource {
         this.throttle = throttle
     }
 
-    @GET
-    public String get(String name, HttpServletRequest httpServletRequest) {
+    @Override
+    public HelloWorld get(String name, HttpServletRequest httpServletRequest) {
         if (!throttle.check(new ThrottleContext(
                 servletPath: httpServletRequest.requestURI,
                 method: httpServletRequest.method,
@@ -27,6 +27,6 @@ public class DefaultHelloWorldApiResource implements HelloWorldApiResource {
             throw new WebApplicationException(429)
         }
 
-        return "Hello ${name}"
+        return new HelloWorld(message: "Hello ${name}")
     }
 }

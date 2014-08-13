@@ -1,6 +1,7 @@
 package com.littlesquare.crackerjack.services.example.resources
 
 import com.littlesquare.crackerjack.services.common.cache.Cacheable
+import com.littlesquare.crackerjack.services.example.core.HelloWorld
 
 import javax.servlet.http.HttpServletRequest
 import javax.ws.rs.DefaultValue
@@ -20,7 +21,7 @@ import java.util.concurrent.TimeUnit
 public interface HelloWorldApiResource {
     @GET
     @Cacheable(cacheName = "HelloWorld", cacheKeyRefs = ["GET", "{0}"], timeToLive = 10L, timeUnit = TimeUnit.SECONDS)
-    public String get(@DefaultValue("Default Value") @QueryParam("name") String name,
-                      @Context HttpServletRequest httpServletRequest)
+    public HelloWorld get(@DefaultValue("Default Value") @QueryParam("name") String name,
+                          @Context HttpServletRequest httpServletRequest)
 }
 
