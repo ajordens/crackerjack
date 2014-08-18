@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.littlesquare.crackerjack.services</groupId>
+  <artifactId>service-cache-hazelcast</artifactId>
+  <versioning>
+    <release>1.0.8</release>
+    <versions>
+      <version>1.0.8</version>
+    </versions>
+    <lastUpdated>20140818030808</lastUpdated>
+  </versioning>
+</metadata>
